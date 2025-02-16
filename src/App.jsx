@@ -5,6 +5,7 @@ import AsideBar from './Components/AsideBar'
 import Dashboard from './Pages/Dashboard'
 import Footer from './Components/Footer'
 import MovieDetails from './Pages/MovieDetails'
+import WatchList from './Pages/WatchList'
 
 
 export default function App() {
@@ -21,6 +22,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path='/movie/:id' element={<MovieDetails />} />
+          <Route path='/watchlist' element={<WatchList />} />
+          {/* <Route path='/watched' element={<WatchedMovies />} /> */}
+          {/* <Route path='/favorites' element={<FavoriteMovies />} /> */}
         </Routes>
       </div>
       <Footer />
