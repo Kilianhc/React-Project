@@ -6,6 +6,8 @@ import Dashboard from './Pages/Dashboard'
 import Footer from './Components/Footer'
 import MovieDetails from './Pages/MovieDetails'
 import WatchList from './Pages/WatchList'
+import FavoriteMovies from './Pages/FavoriteMovies'
+import WatchedMovies from './Pages/WatchedMovies'
 
 
 export default function App() {
@@ -23,8 +25,8 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path='/movie/:id' element={<MovieDetails />} />
           <Route path='/watchlist' element={<WatchList />} />
-          {/* <Route path='/watched' element={<WatchedMovies />} /> */}
-          {/* <Route path='/favorites' element={<FavoriteMovies />} /> */}
+          <Route path='/watched' element={<WatchedMovies />} />
+          <Route path='/favorites' element={<FavoriteMovies />} />
         </Routes>
       </div>
       <Footer />

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Button, Pagination, Card, CardMedia, CardContent, Typography, Grid2 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://localhost:5005/"
+const API_URL = import.meta.env.VITE_API_URL
 
 export default function Dashboard() {
     const [movies, setMovies] = useState([])

@@ -17,7 +17,7 @@ export default function AsideBar({open, toggleAsideBar}) {
                     <ListItemText primary=" ✅ Películas vistas" />
                 </ListItem>
                 <ListItem button component={Link} to="/favorites" onClick={toggleAsideBar}>
-                    <ListItemText primary=" ⭐ Favoritas" />
+                    <ListItemText primary=" ❤️ Favoritas" />
                 </ListItem>
             </List>
         </Drawer>
