@@ -8,16 +8,16 @@ export default function AsideBar({open, toggleAsideBar}) {
         <Drawer anchor="" open={open} onClose={toggleAsideBar}>
             <List>
                 <ListItem button component={Link} to="/" onClick={toggleAsideBar}>
-                    <ListItemText primary=" 🏠 Home" />
+                    <ListItemText sx={{color: "black"}} primary=" 🏠 Home" />
                 </ListItem>
                 <ListItem button component={Link} to="/watchlist" onClick={toggleAsideBar}>
-                    <ListItemText primary=" 📌 Películas por ver" />
+                    <ListItemText sx={{color: "black"}} primary=" 📌 Películas por ver" />
                 </ListItem>
                 <ListItem button component={Link} to="/watched" onClick={toggleAsideBar}>
-                    <ListItemText primary=" ✅ Películas vistas" />
+                    <ListItemText sx={{color: "black"}} primary=" ✅ Películas vistas" />
                 </ListItem>
                 <ListItem button component={Link} to="/favorites" onClick={toggleAsideBar}>
-                    <ListItemText primary=" ❤️ Favoritas" />
+                    <ListItemText sx={{color: "black"}} primary=" ❤️ Favoritas" />
                 </ListItem>
             </List>
         </Drawer>

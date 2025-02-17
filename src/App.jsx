@@ -8,6 +8,8 @@ import MovieDetails from './Pages/MovieDetails'
 import WatchList from './Pages/WatchList'
 import FavoriteMovies from './Pages/FavoriteMovies'
 import WatchedMovies from './Pages/WatchedMovies'
+import { ThemeProvider } from "@mui/material/styles"
+import theme from './theme'
 
 
 export default function App() {
@@ -18,6 +20,7 @@ export default function App() {
   return (
     <>
     <div>
+      <ThemeProvider theme={theme}>
       <NavBar toggleAsideBar={toggleAsideBar} />
       <div>
         <AsideBar open={asidebarOpen} toggleAsideBar={toggleAsideBar} />
@@ -30,6 +33,7 @@ export default function App() {
         </Routes>
       </div>
       <Footer />
+      </ThemeProvider>
     </div>  
     </>
   )
