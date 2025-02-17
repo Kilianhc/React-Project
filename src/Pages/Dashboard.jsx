@@ -12,7 +12,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         axios
-            .get(`${API_URL}movies`)
+            .get(`${API_URL}/movies`)
             .then((res) => setMovies(res.data))
     }, [])
 
