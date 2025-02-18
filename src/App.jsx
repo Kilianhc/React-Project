@@ -26,10 +26,10 @@ export default function App() {
         <AsideBar open={asidebarOpen} toggleAsideBar={toggleAsideBar} />
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path='/movie/:id' element={<MovieDetails />} />
           <Route path='/watchlist' element={<WatchList />} />
           <Route path='/watched' element={<WatchedMovies />} />
           <Route path='/favorites' element={<FavoriteMovies />} />
+          <Route path='/movie/:id' element={<MovieDetails />} />
         </Routes>
       </div>
       <Footer />

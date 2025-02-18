@@ -3,41 +3,39 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Container, Typography, Grid2, Card, CardMedia, CardContent, Button, Stack } from "@mui/material";
 
-const API_URL = "http://localhost:5005/"
+const API_URL = import.meta.env.VITE_API_URL
 
 export default function MovieDetails() {
     const {id} = useParams()
     const [movie, setMovie] = useState(null)
-    const [watchList, setWatchList] = useState([])
-    const [watchedMovies, setWatchedMovies] = useState([])
-    const [favorites, setFavorites] =useState([])
-
+    
     useEffect(() => {
         axios
-        .get(`${API_URL}movies/${id}`)
+        .get(`${API_URL}/movies/${id}`)
         .then((res) => setMovie(res.data))
         .catch((error) => console.error("Error al obtener los datos:", error))
     }, [id])
 
+    const updateMovie = (updatedFields) => {
+        axios
+            .patch(`${API_URL}/movies/${id}`, updatedFields)
+            .then((res) => setMovie(res.data))
+            .catch((error) => console.error("Error al actualizar la película:", error));
+    };
+
     const addToWatchList = () => {
-        if (!watchList.find((m) => m.id === movie.id)) {
-            setWatchList([...watchList, movie])
-        }
+        updateMovie({wantWatch: true})
     }
 
     const addToWatchedMovies = () => {
-        if (!watchedMovies.find((m) => m.id === movie.id)) {
-            setWatchedMovies([...watchedMovies, movie])
-        }
+        updateMovie({isWatched: true})
     }
 
     const addToFavorites = () => {
-        if (!favorites.find((m) => m.id === movie.id)) {
-            setFavorites([...favorites, movie])
-        }
+        updateMovie({isFavorite: true})
     }
 
-    if (!movie) return <Typography sx={{ mt: 10, textAlign: "center" }}>Loading...</Typography>
+    if (!movie) return <Typography color="white" sx={{ mt: 10, textAlign: "center" }}>Loading...</Typography>
 
     return (
         <Container>
