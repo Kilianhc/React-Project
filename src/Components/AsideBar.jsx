@@ -19,6 +19,9 @@ export default function AsideBar({open, toggleAsideBar}) {
                 <ListItem button component={Link} to="/favorites" onClick={toggleAsideBar}>
                     <ListItemText sx={{color: "black"}} primary=" ❤️ Favoritas" />
                 </ListItem>
+                <ListItem button component={Link} to='/addmovie' onClick={toggleAsideBar}>
+                    <ListItemText sx={{color: "black"}} primary=" ✚ Añadir Nueva Película" />
+                </ListItem>
             </List>
         </Drawer>
     )

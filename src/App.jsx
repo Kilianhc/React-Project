@@ -9,7 +9,8 @@ import WatchList from './Pages/WatchList'
 import FavoriteMovies from './Pages/FavoriteMovies'
 import WatchedMovies from './Pages/WatchedMovies'
 import { ThemeProvider } from "@mui/material/styles"
-import theme from './theme'
+import theme from './Utils/theme'
+import AddMovie from './Pages/AddMovie'
 
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
           <Route path='/watchlist' element={<WatchList />} />
           <Route path='/watched' element={<WatchedMovies />} />
           <Route path='/favorites' element={<FavoriteMovies />} />
+          <Route path='/addmovie' element={<AddMovie />} />
           <Route path='/movie/:id' element={<MovieDetails />} />
         </Routes>
       </div>
