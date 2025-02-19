@@ -72,7 +72,7 @@ export default function AddMovie() {
     }
 
     return (
-        <Container sx={{mt:"70px", color:"white", mt: 11}}>
+        <Container sx={{mt:"70px", color:"white", mt: 11, mb: 8}}>
             {error && <Typography color="error">{error}</Typography>}
             <form onSubmit={handleSubmit}>
                 <TextField label="Título" name="title" value={title} onChange={handleInput} fullWidthmargin="normal" required sx={{
@@ -86,7 +86,7 @@ export default function AddMovie() {
                 <TextField label="Género" name="genre" value={genre} onChange={handleInput} fullWidth margin="normal" required sx={{
                         input: { color: "white" },label: { color: "white" }}}/>
                 <TextField label="Sinopsis" name="sinopsis" value={sinopsis} onChange={handleInput} fullWidth margin="normal" multiline rows={3} required sx={{
-                        input: { color: "white" },label: { color: "white" }}}/>
+                        input: { color: "white" }, label: { color: "white" }}}/>
                 <TextField label="Calificación" name="rate" value={rate} onChange={handleInput} fullWidth margin="normal" required sx={{
                         input: { color: "white" }, label: { color: "white" }}}/>
                 <FormControlLabel control={<Checkbox name="watched" checked={watched} onChange={handleInput} sx={{ color: "white", "&.Mui-checked": { color: "white" } }}/>} label="Vista"/>

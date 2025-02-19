@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function MovieCard({movie, onRemove}) {
     return (
-        <Card sx={{ bgcolor:"black", width: "320px", height: "400px", borderRadius:"15px", border:"5px solid", borderColor:"primary.main",
+        <Card sx={{ bgcolor:"black", width: "300px", height: "400px", borderRadius:"15px", border:"5px solid", borderColor:"primary.main",
             boxShadow: 3,
             transition: "transform 0.2s ease-in-out",
             "&:hover": {

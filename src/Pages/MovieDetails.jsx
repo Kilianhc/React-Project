@@ -51,14 +51,14 @@ export default function MovieDetails() {
                         alt={movie.title}
                         sx={{ width: "50%", height: "100%", objectFit: "cover" }}
                     />
-                    <CardContent sx={{ color:"white", flex: 2, flexDirection: "column", justifyContent: "center", p: 3}}>
+                    <CardContent sx={{mt: 5, color:"white", flex: 2, flexDirection: "column", justifyContent: "center", p: 3}}>
                         <Typography variant="h6" sx={{ fontWeight: "bold", mb: 5 }}>{movie.title} ({movie.year})</Typography>
                         <Typography variant="body2">Director: {movie.director}</Typography>
                         <Typography sx={{mt: 1}} variant="body2">Género: {movie.genre}</Typography>
                         <Typography sx={{mt: 1}} variant="body2">Actores principales: {movie.mainActors}</Typography>
                         <Typography sx={{mt: 1}} variant="body2">Calificación: {movie.rate}</Typography>
                         <Typography sx={{mt: 1}} variant="body2">Sinopsis: {movie.sinopsis}</Typography>
-                        <Stack spacing={2} sx={{mt:30}}>
+                        <Stack spacing={2} sx={{mt:10}}>
                             <Button variant="contained" sx={{bgcolor:"background.main"}} onClick={addToWatchList}>
                             ✚ Quiero verla
                             </Button>
