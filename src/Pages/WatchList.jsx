@@ -5,6 +5,7 @@ import MovieCard from "../Components/MovieCard";
 import ConfirmationDialog from "../Components/ConfirmationDialog";
 import useMovieActions from "../Utils/useMovieActions";
 import useConfirmationDialog from "../Utils/useConfirmationDialog";
+import BackButton from "../Components/BackButton";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -35,12 +36,12 @@ export default function WatchList() {
     }
 
     return (
-        <Container sx={{ mt: 15 }}>
-            <Typography variant="h4" color="white" gutterBottom>📌 Películas por Ver</Typography>
+        <Container sx={{ mt: 10, mb: 10 }}>
+            <Typography textAlign="center" variant="h4" color="white" gutterBottom>📌 Películas por Ver</Typography>
             {watchList.length === 0 ? (
-                <Typography color="white">No hay películas en la lista</Typography>
+                <Typography textAlign="center" color="white">No hay películas en la lista</Typography>
             ) : (
-                <Grid2 container spacing={3}>
+                <Grid2 justifyContent="center" container spacing={3}>
                     {watchList.map((movie) => (
                         <Grid2 items xs={12} sm={6} md={4} key={movie.id}>
                             <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} />
@@ -49,7 +50,10 @@ export default function WatchList() {
                 </Grid2>
             )}
             <ConfirmationDialog open={dialogOpen} onClose={handleCloseDialog} onConfirm={handleRemoveFromWatchList}
-                                            title="Eliminar Película" message="Esta película se eliminará de tu lista de películas por ver, ¿está seguro de que quiere eliminarla?" />
+                title="Eliminar Película" message="Esta película se eliminará de tu lista de películas por ver, ¿está seguro de que quiere eliminarla?" />
+            <Grid2 sx={{mt: 1}} display="flex" justifyContent="center">
+                <BackButton/>
+            </Grid2>
         </Container>
     )
 

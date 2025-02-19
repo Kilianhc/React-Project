@@ -2,7 +2,8 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
-import { Container, TextField, Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { Container, TextField, Button, Checkbox, FormControlLabel, Typography, Grid2 } from "@mui/material";
+import BackButton from "../Components/BackButton";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -49,12 +50,12 @@ export default function AddMovie() {
 
         const newMovie = {
             title, 
-            year: parseInt(year), 
+            year, 
             director, 
             mainActors: actors.split(",").map(actor => actor.trim()), 
             genre, 
             sinopsis, 
-            rate: parseFloat(rate), 
+            rate, 
             isWatched: watched, 
             isFavorite: favorite, 
             wantWatch: watchList, 
@@ -71,22 +72,32 @@ export default function AddMovie() {
     }
 
     return (
-        <Container sx={{mt:"70px", color:"white"}}>
-            <Typography sx={{textAlign:"center"}}>Añadir Nueva Película</Typography>
+        <Container sx={{mt:"70px", color:"white", mt: 11}}>
             {error && <Typography color="error">{error}</Typography>}
             <form onSubmit={handleSubmit}>
-                <TextField label="Título" name="title" value={title} onChange={handleInput} fullWidthmargin="normal" required sx={{}}/>
-                <TextField label="Año" name="year" type="number" value={year} onChange={handleInput} fullWidth margin="normal" required/>
-                <TextField label="Director" name="director" value={director} onChange={handleInput} fullWidth margin="normal" required/>
-                <TextField label="Actores (separados por comas)" name="actors" value={actors} onChange={handleInput} fullWidth margin="normal" required/>
-                <TextField label="Género" name="genre" value={genre} onChange={handleInput} fullWidth margin="normal" required/>
-                <TextField label="Sinopsis" name="sinopsis" value={sinopsis} onChange={handleInput} fullWidth margin="normal" multiline rows={3} required/>
-                <TextField label="Calificación" name="rate" type="number" step="0.1" value={rate} onChange={handleInput} fullWidth margin="normal" required/>
-                <FormControlLabel control={<Checkbox name="watched" checked={watched} onChange={handleInput} />} label="Vista"/>
-                <FormControlLabel control={<Checkbox name="favorite" checked={favorite} onChange={handleInput} />} label="Favorita"/>
-                <FormControlLabel control={<Checkbox name="watchList" checked={watchList} onChange={handleInput} />} label="Por Ver"/>
-                <TextField label="URL de la Imagen" name="image" value={image} onChange={handleInput} fullWidth margin="normal" required/>
+                <TextField label="Título" name="title" value={title} onChange={handleInput} fullWidthmargin="normal" required sx={{
+                        input: { color: "white" },label: { color: "white" }}}/>
+                <TextField label="Año" name="year"  value={year} onChange={handleInput} fullWidth margin="normal" required sx={{
+                        input: { color: "white" },label: { color: "white" }}}/>
+                <TextField label="Director" name="director" value={director} onChange={handleInput} fullWidth margin="normal" required sx={{
+                        input: { color: "white" },label: { color: "white" }}}/>
+                <TextField label="Actores (separados por comas)" name="actors" value={actors} onChange={handleInput} fullWidth margin="normal" required sx={{
+                        input: { color: "white" },label: { color: "white" }}}/>
+                <TextField label="Género" name="genre" value={genre} onChange={handleInput} fullWidth margin="normal" required sx={{
+                        input: { color: "white" },label: { color: "white" }}}/>
+                <TextField label="Sinopsis" name="sinopsis" value={sinopsis} onChange={handleInput} fullWidth margin="normal" multiline rows={3} required sx={{
+                        input: { color: "white" },label: { color: "white" }}}/>
+                <TextField label="Calificación" name="rate" value={rate} onChange={handleInput} fullWidth margin="normal" required sx={{
+                        input: { color: "white" }, label: { color: "white" }}}/>
+                <FormControlLabel control={<Checkbox name="watched" checked={watched} onChange={handleInput} sx={{ color: "white", "&.Mui-checked": { color: "white" } }}/>} label="Vista"/>
+                <FormControlLabel control={<Checkbox name="favorite" checked={favorite} onChange={handleInput} sx={{ color: "white", "&.Mui-checked": { color: "white" } }} />} label="Favorita"/>
+                <FormControlLabel control={<Checkbox name="watchList" checked={watchList} onChange={handleInput} sx={{ color: "white", "&.Mui-checked": { color: "white" } }} />} label="Por Ver"/>
+                <TextField label="URL de la Imagen" name="image" value={image} onChange={handleInput} fullWidth margin="normal" required sx={{
+                        input: { color: "white" },label: { color: "white" }}}/>
+                <Grid2 sx={{display:"flex", justifyContent:"space-between"}}>
                 <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>Añadir Película</Button>
+                <BackButton />
+                </Grid2>
             </form>
         </Container>
     )

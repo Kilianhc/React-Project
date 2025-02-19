@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Container, Typography, Grid2, Card, CardMedia, CardContent, Button, Stack } from "@mui/material";
+import BackButton from "../Components/BackButton";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -39,7 +40,7 @@ export default function MovieDetails() {
 
     return (
         <Container>
-        <Grid2 container justifyContent="center" sx={{ mt: 15 }}>
+        <Grid2 container justifyContent="center" sx={{ mt: 10 }}>
             <Grid2 item xs={12} sm={6} md={4}>
                 <Card sx={{ bgcolor:"black", display:"flex", maxWidth: "800px", height: "700px", borderRadius:"15px", border: "5px solid",
                     borderColor:"primary.main"
@@ -71,6 +72,9 @@ export default function MovieDetails() {
                     </CardContent>
                 </Card>
             </Grid2>
+        </Grid2>
+        <Grid2 sx={{display:"flex", justifyContent:"center"}}>
+            <BackButton />
         </Grid2>
     </Container>
     )

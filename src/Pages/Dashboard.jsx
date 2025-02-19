@@ -6,6 +6,7 @@ import MovieCard from "../Components/MovieCard";
 import ConfirmationDialog from "../Components/ConfirmationDialog";
 import useConfirmationDialog from "../Utils/useConfirmationDialog";
 import useMovieActions from "../Utils/useMovieActions";
+import BackButton from "../Components/BackButton";
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -47,7 +48,10 @@ export default function Dashboard() {
             </Grid2>
             <ConfirmationDialog open={dialogOpen} onClose={handleCloseDialog} onConfirm={handleRemoveMovieConfirm}
                 title="Eliminar Película" message="Esta película se eliminará completamente, ¿está seguro de que quiere eliminar esta película?" />
+            <Grid2 sx={{display:"flex", justifyContent:"space-between"}} >
             <Pagination count={Math.ceil(movies.length / moviesPerPage)} page={page} onChange={handleChangePage} sx={{ pt: 3, pb: 8, "& .MuiPaginationItem-root": { color: "white" } }} />
+            <BackButton />
+            </Grid2>
         </Container>
     )
 }
