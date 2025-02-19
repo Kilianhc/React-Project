@@ -1,22 +1,9 @@
-import { AppBar, Toolbar, Typography, IconButton, Box, TextField, InputAdornment } from "@mui/material";
+import { AppBar, Toolbar, Typography, IconButton, Box, Select, FormControl, InputLabel, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Dashboard from "../Pages/Dashboard";
-import SearchIcon from "@mui/icons-material/Search";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/Ki.png"
+import { Link } from "react-router-dom";
 
 export default function NavBar({ toggleAsideBar }) {
-
-    const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
-    const navigate = useNavigate(); // Hook para redireccionar
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        if (searchTerm.trim()) {
-            navigate(`/search?genre=${searchTerm}`); // Redirecciona a la página de búsqueda
-        }
-    };
 
     return (
         <AppBar position="fixed">
@@ -25,39 +12,15 @@ export default function NavBar({ toggleAsideBar }) {
                     <MenuIcon />
                 </IconButton>
 
-                <Typography variant="h4" sx={{ flexGrow: 1, textAlign: "center", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Typography component={Link} to={"/"} variant="h4" sx={{ flexGrow: 1, display: "flex", justifyContent: "center", alignItems: "center", textDecoration:"none", color:"white" }}>
                     <Box
                         component="img"
                         src={logo}
                         alt="KiMovie Logo"
-                        sx={{ height: 60, width: "auto", mr: 2 }}
+                        sx={{ height: 60, width: "auto", mr: 1 }}
                     />
                     KiMovie
                 </Typography>
-                <form onSubmit={handleSearch}>
-                    <TextField
-                        variant="outlined"
-                        size="small"
-                        placeholder="Buscar por género..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        sx={{ 
-                            backgroundColor: "white", 
-                            borderRadius: 1, 
-                            "& .MuiOutlinedInput-root": { 
-                                color: "black", 
-                                "& fieldset": { border: "none" } 
-                            } 
-                        }}
-                        slotProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon sx={{ color: "black" }} />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                </form>
             </Toolbar>
         </AppBar>
     )

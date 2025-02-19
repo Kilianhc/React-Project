@@ -16,10 +16,10 @@ export default function MovieCard({movie, onRemove}) {
                 {movie.title} ({movie.year})
             </Typography>
             <Stack sx={{bgcolor:"black"}} direction="row" spacing={2}>
-            <Button component={Link} to={`/movie/${movie.id}`} variant="contained" sx={{ textAlign:"center", height:"45px", bgcolor:"accent.main"}}>
+            <Button component={Link} to={`/movie/${movie.id}`} variant="contained" sx={{ textAlign:"center", height:"45px", bgcolor:"background.main"}}>
                 Ver Detalles
             </Button>
-                <Button variant="contained" sx={{bgcolor: "red", height:"45px"}} onClick={() =>onRemove(movie.id)}>
+                <Button variant="contained" sx={{bgcolor: "accent.main", height:"45px"}} onClick={() =>onRemove(movie.id)}>
                 🗑️ Eliminar de la lista 
                 </Button>
             </Stack>
