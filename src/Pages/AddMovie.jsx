@@ -74,31 +74,31 @@ export default function AddMovie() {
             {error && <Typography color="error">{error}</Typography>}
             <form onSubmit={handleSubmit}>
                 <TextField label="Título" name="title" value={title} onChange={handleInput} fullWidthmargin="normal" required sx={{
-                    input: { color: "white" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <TextField label="Año" name="year" value={year} onChange={handleInput} fullWidth margin="normal" required sx={{
-                    input: { color: "white" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <TextField label="Director" name="director" value={director} onChange={handleInput} fullWidth margin="normal" required sx={{
-                    input: { color: "white" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <TextField label="Actores" name="mainActors" value={mainActors} onChange={handleInput} fullWidth margin="normal" required sx={{
-                    input: { color: "white" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <TextField label="Género" name="genre" value={genre} onChange={handleInput} fullWidth margin="normal" required sx={{
-                    input: { color: "white" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <TextField label="Sinopsis" name="sinopsis" value={sinopsis} onChange={handleInput} fullWidth margin="normal" multiline rows={3} required sx={{
-                    "& .MuiInputBase-input": { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    "& .MuiInputBase-input": { color: "white", bgcolor:"primary.main" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <TextField label="Calificación" name="rate" value={rate} onChange={handleInput} fullWidth margin="normal" required sx={{
-                    input: { color: "white" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <FormControlLabel control={<Checkbox name="watched" checked={watched} onChange={handleInput} sx={{ color: "white", "&.Mui-checked": { color: "white" } }} />} label="Vista" />
                 <FormControlLabel control={<Checkbox name="favorite" checked={favorite} onChange={handleInput} sx={{ color: "white", "&.Mui-checked": { color: "white" } }} />} label="Favorita" />
                 <FormControlLabel control={<Checkbox name="watchList" checked={watchList} onChange={handleInput} sx={{ color: "white", "&.Mui-checked": { color: "white" } }} />} label="Por Ver" />
                 <TextField label="URL de la Imagen" name="image" value={image} onChange={handleInput} fullWidth margin="normal" required sx={{
-                    input: { color: "white" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
+                    input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <Grid2 sx={{ display: "flex", justifyContent: "space-between" }}>
                     <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }} startIcon={<AddIcon />}>Añadir Película</Button>
