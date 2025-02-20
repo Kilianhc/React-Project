@@ -15,6 +15,7 @@ import AddMovie from './Pages/AddMovie'
 
 export default function App() {
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [asidebarOpen, setAsidebarOpen] = useState(false)
   const toggleAsideBar = () => setAsidebarOpen(!asidebarOpen)
 
@@ -24,9 +25,9 @@ export default function App() {
         <ThemeProvider theme={theme}>
           <NavBar toggleAsideBar={toggleAsideBar} />
           <div>
-            <AsideBar open={asidebarOpen} toggleAsideBar={toggleAsideBar} />
+            <AsideBar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} open={asidebarOpen} toggleAsideBar={toggleAsideBar} />
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard isAuthenticated={isAuthenticated} />} />
               <Route path='/watchlist' element={<WatchList />} />
               <Route path='/watched' element={<WatchedMovies />} />
               <Route path='/favorites' element={<FavoriteMovies />} />

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function MovieCard({ movie, onRemove }) {
+export default function MovieCard({ movie, onRemove, isAuthenticated }) {
     return (
         <Card sx={{
-            bgcolor: "black", width:{xs:"90%", sm:"320px"}, height: "400px", borderRadius: "15px", border: "5px solid", borderColor: "primary.main",
+            bgcolor: "black", margin: "auto", width: { xs: "85%", sm: "320px" }, height: "400px", borderRadius: "15px", border: "5px solid", borderColor: "primary.main",
             boxShadow: 3,
             transition: "transform 0.2s ease-in-out",
             "&:hover": {
@@ -23,9 +23,12 @@ export default function MovieCard({ movie, onRemove }) {
                     <Button component={Link} to={`/movie/${movie.id}`} variant="contained" sx={{ textAlign: "center", height: "35px", bgcolor: "background.main", "&:hover": { transform: "scale(1.05)" } }}
                         startIcon={<VisibilityIcon />}> Detalles
                     </Button>
-                    <Button variant="contained" sx={{ bgcolor: "accent.main", height: "35px", "&:hover": { transform: "scale(1.05)" } }} onClick={() => onRemove(movie.id)}
-                        startIcon={<DeleteIcon />}> Eliminar
-                    </Button>
+                    {isAuthenticated && (
+                        <Button variant="contained" sx={{ bgcolor: "accent.main", height: "35px", "&:hover": { transform: "scale(1.05)" } }} onClick={() => onRemove(movie.id)}
+                            startIcon={<DeleteIcon />}> Eliminar
+                        </Button>
+                    )}
+
                 </Stack>
             </CardContent>
         </Card>

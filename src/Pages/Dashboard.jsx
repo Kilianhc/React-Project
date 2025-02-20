@@ -10,7 +10,7 @@ import Fuse from "fuse.js";
 import { getMovies, deleteMovie } from "../Utils/api"
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function Dashboard() {
+export default function Dashboard({isAuthenticated}) {
     const [movies, setMovies] = useState([])
     const [page, setPage] = useState(1)
     const moviesPerPage = 9
@@ -80,7 +80,7 @@ export default function Dashboard() {
     const handleChangePage = (event, value) => setPage(value)
 
     return (
-        <Container sx={{ bgcolor: "secondary.main", maxWidth: "100%", paddingX: {xs:2, sm:3}, overflowX:"hidden"}}>
+        <Container sx={{ bgcolor: "secondary.main", maxWidth: "100%", paddingX: {xs:0, sm:3}, overflowX:"hidden"}}>
             <Grid2 sx={{ display: "flex", justifyContent: "center", width: "100%", margin: 0, overflowX: "hidden" }}>
                 <TextField
                     variant="outlined"
@@ -111,7 +111,7 @@ export default function Dashboard() {
             <Grid2 justifyContent="center" container spacing={10} sx={{ paddingY: 5, width: "100%", margin: 0, overflow: "hidden" }}>
                 {filteredMovies.slice((page - 1) * moviesPerPage, page * moviesPerPage).map((movie) => (
                     <Grid2 item xs={12} sm={6} md={4} key={movie.id}>
-                        <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} />
+                        <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} isAuthenticated={isAuthenticated} />
                     </Grid2>
                 ))}
             </Grid2>
@@ -120,7 +120,7 @@ export default function Dashboard() {
             )}
             <ConfirmationDialog open={dialogOpen} onClose={handleCloseDialog} onConfirm={handleRemoveMovieConfirm}
                 title="Eliminar Película" message="Esta película se eliminará completamente, ¿está seguro de que quiere eliminar esta película?" />
-            <Grid2 sx={{ display: "flex", justifyContent: "space-between" }} >
+            <Grid2 sx={{ display: "flex", justifyContent: {sm:"space-between", xs:"center"} }} >
                 <Pagination count={Math.ceil(filteredMovies.length / moviesPerPage)} page={page} onChange={handleChangePage} sx={{ pt: 3, pb: 8, "& .MuiPaginationItem-root": { color: "white" } }} />
                 <BackButton />
             </Grid2>

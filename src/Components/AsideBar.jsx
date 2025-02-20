@@ -9,11 +9,10 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { useState } from "react";
 import KeyIcon from '@mui/icons-material/Key';
 
-export default function AsideBar({ open, toggleAsideBar }) {
+export default function AsideBar({ open, toggleAsideBar, isAuthenticated, setIsAuthenticated }) {
 
     const [isAdmin, setIsAdmin] = useState(false)
     const [password, setPassword] = useState("");
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [error, setError] = useState("");
 
     const handleAdminClick = () => {
