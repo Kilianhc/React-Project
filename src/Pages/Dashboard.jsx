@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
-import { Container, Button, Pagination, TextField, Typography, Grid2 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Container, Pagination, TextField, Typography, Grid2 } from "@mui/material";
 import MovieCard from "../Components/MovieCard";
 import ConfirmationDialog from "../Components/ConfirmationDialog";
 import useConfirmationDialog from "../Utils/useConfirmationDialog";
 import useMovieActions from "../Utils/useMovieActions";
 import BackButton from "../Components/BackButton";
 import Fuse from "fuse.js";
-
-const API_URL = import.meta.env.VITE_API_URL
+import { getMovies, deleteMovie } from "../Utils/api"
 
 export default function Dashboard() {
     const [movies, setMovies] = useState([])
@@ -27,7 +24,7 @@ export default function Dashboard() {
     const { handleRemoveMovie } = useMovieActions()
 
     const filterMoviesByGenre = (movies, genre) => {
-        if(genre) {
+        if (genre) {
             const filtered = movies.filter((movie) => movie.genre.includes(genre))
             setFilteredMovies(filtered)
         } else {
@@ -36,14 +33,18 @@ export default function Dashboard() {
     }
 
     useEffect(() => {
-        axios
-            .get(`${API_URL}/movies`)
-            .then((res) => {
-                setMovies(res.data)
-                filterMoviesByGenre(res.data, genre)
-            })
-            .catch((error) => console.error("Error al obtener las películas:", error))
-    }, [])
+        const fetchMovies = async () => {
+            try {
+                const data = await getMovies();
+                setMovies(data);
+                filterMoviesByGenre(data, genre);
+            } catch (error) {
+                console.error("Error al obtener las películas:", error);
+            }
+        };
+
+        fetchMovies();
+    }, []);
 
     const fuseOptions = {
         keys: ["genre"],
@@ -63,46 +64,49 @@ export default function Dashboard() {
         }
     }, [searchTerm, genre, movies])
 
-    const handleRemoveMovieConfirm = () => {
+    const handleRemoveMovieConfirm = async () => {
         if (selectedMovieId) {
-            handleRemoveMovie(selectedMovieId, () => {
-                setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== selectedMovieId))
-                handleCloseDialog()
-            })
+            try {
+                await deleteMovie(selectedMovieId);
+                setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== selectedMovieId));
+                handleCloseDialog();
+            } catch (error) {
+                console.error("Error al eliminar la película:", error);
+            }
         }
-    }
+    };
 
     const handleChangePage = (event, value) => setPage(value)
 
     return (
-        <Container sx={{ bgcolor: "secondary.main"}}>
-            <Grid2 sx={{display:"flex", justifyContent:"center"}}>
-            <TextField
-                variant="outlined"
-                size="small"
-                placeholder="Buscar por género..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{
-                    mt: 15,
-                    backgroundColor: "white",
-                    borderRadius: 1,
-                    width: "100%",
-                    maxWidth: 400,
-                    mb: 1,
-                    "& .MuiOutlinedInput-root": {
-                        color: "black",
-                        "& fieldset": { border: "none" }
-                    }
-                }}
-                slotProps={{
-                    input: {
-                        style: { color: "black" }, // Cambia el color del texto a negro
-                    },
-                }}
-            />
+        <Container sx={{ bgcolor: "secondary.main" }}>
+            <Grid2 sx={{ display: "flex", justifyContent: "center" }}>
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    placeholder="Buscar por género..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    sx={{
+                        mt: 15,
+                        backgroundColor: "white",
+                        borderRadius: 1,
+                        width: "100%",
+                        maxWidth: 400,
+                        mb: 1,
+                        "& .MuiOutlinedInput-root": {
+                            color: "black",
+                            "& fieldset": { border: "none" }
+                        }
+                    }}
+                    slotProps={{
+                        input: {
+                            style: { color: "black" }, // Cambia el color del texto a negro
+                        },
+                    }}
+                />
             </Grid2>
-            <Grid2 justifyContent="center" container spacing={6} sx={{pt: 5 }}>
+            <Grid2 justifyContent="center" container spacing={6} sx={{ pt: 5 }}>
                 {filteredMovies.slice((page - 1) * moviesPerPage, page * moviesPerPage).map((movie) => (
                     <Grid2 item xs={12} sm={6} md={4} key={movie.id}>
                         <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} />

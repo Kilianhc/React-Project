@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
 
-export default function ConfirmationDialog({open, onClose, onConfirm, title, message}) {
+export default function ConfirmationDialog({ open, onClose, onConfirm, title, message }) {
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>{title}</DialogTitle>

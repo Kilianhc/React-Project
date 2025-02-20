@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { Container, Typography, Card, CardMedia, CardContent, Grid2 } from "@mui/material";
-import axios from "axios";
+import { Container, Typography, Grid2 } from "@mui/material";
 import MovieCard from "../Components/MovieCard";
 import ConfirmationDialog from "../Components/ConfirmationDialog";
 import useMovieActions from "../Utils/useMovieActions";
 import useConfirmationDialog from "../Utils/useConfirmationDialog";
 import BackButton from "../Components/BackButton";
-
-const API_URL = import.meta.env.VITE_API_URL
+import { getMovies } from "../Utils/api";
 
 export default function WatchList() {
 
@@ -18,28 +16,35 @@ export default function WatchList() {
     const { handleUpdateMovie } = useMovieActions()
 
     useEffect(() => {
-        axios
-            .get(`${API_URL}/movies?wantWatch=true`)
-            .then((res) => setWatchList(res.data))
-            .catch((error) => console.error("Error al obtener las películas favoritas:", error));
+        const fetchWatchList = async () => {
+            try {
+                const movies = await getMovies();
+                const watchListMovies = movies.filter((movie) => movie.wantWatch);
+                setWatchList(watchListMovies);
+            } catch (error) {
+                console.error("Error al obtener las películas por ver:", error);
+            }
+        };
+
+        fetchWatchList();
     }, []);
 
     const handleRemoveFromWatchList = () => {
-        if(selectedMovieId) {
+        if (selectedMovieId) {
             handleUpdateMovie(
-                selectedMovieId, {wantWatch: false}, () => {
+                selectedMovieId, { wantWatch: false }, () => {
                     setWatchList((prevMovies) => prevMovies.filter((movie) => movie.id !== selectedMovieId))
                     handleCloseDialog()
                 }
-            ) 
+            )
         }
     }
 
     return (
-        <Container sx={{ mt: 10, mb: 10 }}>
+        <Container sx={{ mt: 15, mb: 10 }}>
             <Typography textAlign="center" variant="h4" color="white" gutterBottom>📌 Películas por Ver</Typography>
             {watchList.length === 0 ? (
-                <Typography textAlign="center" color="white">No hay películas en la lista</Typography>
+                <Typography textAlign="center" color="white" sx={{ mb: 5 }}>No hay películas en la lista</Typography>
             ) : (
                 <Grid2 justifyContent="center" container spacing={3}>
                     {watchList.map((movie) => (
@@ -51,8 +56,8 @@ export default function WatchList() {
             )}
             <ConfirmationDialog open={dialogOpen} onClose={handleCloseDialog} onConfirm={handleRemoveFromWatchList}
                 title="Eliminar Película" message="Esta película se eliminará de tu lista de películas por ver, ¿está seguro de que quiere eliminarla?" />
-            <Grid2 sx={{mt: 1}} display="flex" justifyContent="center">
-                <BackButton/>
+            <Grid2 sx={{ mt: 1 }} display="flex" justifyContent="center">
+                <BackButton />
             </Grid2>
         </Container>
     )

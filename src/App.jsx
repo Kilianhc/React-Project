@@ -17,26 +17,26 @@ export default function App() {
 
   const [asidebarOpen, setAsidebarOpen] = useState(false)
   const toggleAsideBar = () => setAsidebarOpen(!asidebarOpen)
-  
+
   return (
     <>
-    <div>
-      <ThemeProvider theme={theme}>
-      <NavBar toggleAsideBar={toggleAsideBar} />
       <div>
-        <AsideBar open={asidebarOpen} toggleAsideBar={toggleAsideBar} />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path='/watchlist' element={<WatchList />} />
-          <Route path='/watched' element={<WatchedMovies />} />
-          <Route path='/favorites' element={<FavoriteMovies />} />
-          <Route path='/addmovie' element={<AddMovie />} />
-          <Route path='/movie/:id' element={<MovieDetails />} />
-        </Routes>
+        <ThemeProvider theme={theme}>
+          <NavBar toggleAsideBar={toggleAsideBar} />
+          <div>
+            <AsideBar open={asidebarOpen} toggleAsideBar={toggleAsideBar} />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path='/watchlist' element={<WatchList />} />
+              <Route path='/watched' element={<WatchedMovies />} />
+              <Route path='/favorites' element={<FavoriteMovies />} />
+              <Route path='/addmovie' element={<AddMovie />} />
+              <Route path='/movie/:id' element={<MovieDetails />} />
+            </Routes>
+          </div>
+          <Footer />
+        </ThemeProvider>
       </div>
-      <Footer />
-      </ThemeProvider>
-    </div>  
     </>
   )
 }

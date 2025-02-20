@@ -12,7 +12,7 @@ export default function NavBar({ toggleAsideBar }) {
                     <MenuIcon />
                 </IconButton>
 
-                <Typography component={Link} to={"/"} variant="h4" sx={{ flexGrow: 1, display: "flex", justifyContent: "center", alignItems: "center", textDecoration:"none", color:"white" }}>
+                <Typography component={Link} to={"/"} variant="h4" sx={{ flexGrow: 1, display: "flex", justifyContent: "center", alignItems: "center", textDecoration: "none", color: "white" }}>
                     <Box
                         component="img"
                         src={logo}

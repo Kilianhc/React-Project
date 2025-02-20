@@ -1,43 +1,48 @@
 import { useEffect, useState } from "react";
-import { Container, Typography, Card, CardMedia, CardContent, Grid2 } from "@mui/material";
-import axios from "axios";
+import { Container, Typography, Grid2 } from "@mui/material";
 import MovieCard from "../Components/MovieCard";
 import ConfirmationDialog from "../Components/ConfirmationDialog";
 import useConfirmationDialog from "../Utils/useConfirmationDialog";
 import useMovieActions from "../Utils/useMovieActions";
 import BackButton from "../Components/BackButton";
-
-const API_URL = import.meta.env.VITE_API_URL
+import { getMovies } from "../Utils/api";
 
 export default function FavoriteMovies() {
 
     const [favoriteMovies, setFavoriteMovies] = useState([])
 
-    const {dialogOpen, selectedMovieId, handleOpenDialog, handleCloseDialog} = useConfirmationDialog()
+    const { dialogOpen, selectedMovieId, handleOpenDialog, handleCloseDialog } = useConfirmationDialog()
 
-    const {handleUpdateMovie} = useMovieActions()
+    const { handleUpdateMovie } = useMovieActions()
 
     useEffect(() => {
-        axios
-        .get(`${API_URL}/movies?isFavorite=true`)
-        .then((res) => setFavoriteMovies(res.data))
-        .catch((error) => console.error("Error al obtener las películas favoritas:", error));
-}, []);
+        const fetchFavoriteMovies = async () => {
+            try {
+                const movies = await getMovies();
+                const favorites = movies.filter((movie) => movie.isFavorite);
+                setFavoriteMovies(favorites);
+            } catch (error) {
+                console.error("Error al obtener las películas favoritas:", error);
+            }
+        };
+
+        fetchFavoriteMovies();
+    }, []);
 
     const handleRemoveFromFavorites = () => {
-        if(selectedMovieId) {
-        handleUpdateMovie(
-            selectedMovieId, {isFavorite: false}, () => {
-                setFavoriteMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== selectedMovieId))
-                handleCloseDialog()
-            }
-        )
+        if (selectedMovieId) {
+            handleUpdateMovie(
+                selectedMovieId, { isFavorite: false }, () => {
+                    setFavoriteMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== selectedMovieId))
+                    handleCloseDialog()
+                }
+            )
+        }
     }
-}
 
     return (
-        <Container sx={{mt: 10, mb: 10}}>
-            <Typography textAlign="center" variant="h4" color="white" gutterBottom>❤️ Favoritas</Typography>
+        <Container sx={{ mt: 15, mb: 10 }}>
+            <Typography textAlign="center" variant="h4" color="white" gutterBottom sx={{ mb: 5 }}>❤️ Favoritas</Typography>
             {favoriteMovies.length === 0 ? (
                 <Typography textAlign="center" color="white">No hay películas en la lista</Typography>
             ) : (
@@ -47,12 +52,12 @@ export default function FavoriteMovies() {
                             <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} />
                         </Grid2>
                     ))}
-                </Grid2>    
+                </Grid2>
             )}
             <ConfirmationDialog open={dialogOpen} onClose={handleCloseDialog} onConfirm={handleRemoveFromFavorites}
-                    title="Eliminar Película" message="Esta película se eliminará de tu lista de favoritas, ¿está seguro de que quiere eliminarla?" />
-            <Grid2 sx={{mt:1, display:"flex", justifyContent:"center"}}>
-            <BackButton />
+                title="Eliminar Película" message="Esta película se eliminará de tu lista de favoritas, ¿está seguro de que quiere eliminarla?" />
+            <Grid2 sx={{ mt: 1, display: "flex", justifyContent: "center" }}>
+                <BackButton />
             </Grid2>
         </Container>
     )
