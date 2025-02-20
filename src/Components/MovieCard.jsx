@@ -23,11 +23,11 @@ export default function MovieCard({ movie, onRemove, isAuthenticated }) {
                     <Button component={Link} to={`/movie/${movie.id}`} variant="contained" sx={{ textAlign: "center", height: "35px", bgcolor: "background.main", "&:hover": { transform: "scale(1.05)" } }}
                         startIcon={<VisibilityIcon />}> Detalles
                     </Button>
-                    {isAuthenticated && (
+                    {/* {isAuthenticated && ( */}
                         <Button variant="contained" sx={{ bgcolor: "accent.main", height: "35px", "&:hover": { transform: "scale(1.05)" } }} onClick={() => onRemove(movie.id)}
                             startIcon={<DeleteIcon />}> Eliminar
                         </Button>
-                    )}
+                    {/* )} */}
 
                 </Stack>
             </CardContent>
