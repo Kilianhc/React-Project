@@ -6,6 +6,7 @@ import useConfirmationDialog from "../Utils/useConfirmationDialog";
 import useMovieActions from "../Utils/useMovieActions";
 import BackButton from "../Components/BackButton";
 import { getMovies } from "../Utils/api";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function FavoriteMovies() {
 
@@ -41,12 +42,12 @@ export default function FavoriteMovies() {
     }
 
     return (
-        <Container sx={{ mt: 15, mb: 10 }}>
-            <Typography textAlign="center" variant="h4" color="white" gutterBottom sx={{ mb: 5 }}>❤️ Favoritas</Typography>
+        <Container sx={{ mt: 15, mb: 10, maxWidth: "100%", px: { xs: 2, sm: 3 } }}>
+            <Typography textAlign="center" variant="h4" color="white" gutterBottom sx={{ mb: 5, display:"flex", justifyContent:"center" }}><FavoriteIcon fontSize="large"/>Favoritas</Typography>
             {favoriteMovies.length === 0 ? (
                 <Typography textAlign="center" color="white">No hay películas en la lista</Typography>
             ) : (
-                <Grid2 justifyContent="center" container spacing={3}>
+                <Grid2 justifyContent="center" container spacing={3} sx={{ width: "100%", margin: 0 }}>
                     {favoriteMovies.map((movie) => (
                         <Grid2 items xs={12} sm={6} md={4} key={movie.id}>
                             <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} />

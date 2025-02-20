@@ -6,6 +6,7 @@ import useMovieActions from "../Utils/useMovieActions";
 import useConfirmationDialog from "../Utils/useConfirmationDialog";
 import BackButton from "../Components/BackButton";
 import { getMovies } from "../Utils/api";
+import PushPinIcon from "@mui/icons-material/PushPin";
 
 export default function WatchList() {
 
@@ -41,12 +42,12 @@ export default function WatchList() {
     }
 
     return (
-        <Container sx={{ mt: 15, mb: 10 }}>
-            <Typography textAlign="center" variant="h4" color="white" gutterBottom>📌 Películas por Ver</Typography>
+        <Container sx={{ mt: 15, mb: 10, maxWidth: "100%", px: { xs: 2, sm: 3 }  }}>
+            <Typography textAlign="center" variant="h4" color="white" gutterBottom sx={{mb:5, display:"flex", justifyContent:"center" }}><PushPinIcon fontSize="large"/>Películas por Ver</Typography>
             {watchList.length === 0 ? (
                 <Typography textAlign="center" color="white" sx={{ mb: 5 }}>No hay películas en la lista</Typography>
             ) : (
-                <Grid2 justifyContent="center" container spacing={3}>
+                <Grid2 justifyContent="center" container spacing={3} sx={{ width: "100%", margin: 0 }}>
                     {watchList.map((movie) => (
                         <Grid2 items xs={12} sm={6} md={4} key={movie.id}>
                             <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} />

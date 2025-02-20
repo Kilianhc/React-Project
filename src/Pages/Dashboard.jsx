@@ -80,8 +80,8 @@ export default function Dashboard() {
     const handleChangePage = (event, value) => setPage(value)
 
     return (
-        <Container sx={{ bgcolor: "secondary.main" }}>
-            <Grid2 sx={{ display: "flex", justifyContent: "center" }}>
+        <Container sx={{ bgcolor: "secondary.main", maxWidth: "100%", paddingX: {xs:2, sm:3}, overflowX:"hidden"}}>
+            <Grid2 sx={{ display: "flex", justifyContent: "center", width: "100%", margin: 0, overflowX: "hidden" }}>
                 <TextField
                     variant="outlined"
                     size="small"
@@ -92,7 +92,7 @@ export default function Dashboard() {
                         mt: 15,
                         backgroundColor: "white",
                         borderRadius: 1,
-                        width: "100%",
+                        width: "90%",
                         maxWidth: 400,
                         mb: 1,
                         "& .MuiOutlinedInput-root": {
@@ -103,12 +103,12 @@ export default function Dashboard() {
                     slotProps={{
                         input: {
                             startAdornment: <SearchIcon sx={{color: "primary.main", mr: 1}}/>,
-                            style: { color: "black" }, // Cambia el color del texto a negro
+                            style: { color: "black" }
                         },
                     }}
                 />
             </Grid2>
-            <Grid2 justifyContent="center" container spacing={6} sx={{ pt: 5 }}>
+            <Grid2 justifyContent="center" container spacing={10} sx={{ paddingY: 5, width: "100%", margin: 0, overflow: "hidden" }}>
                 {filteredMovies.slice((page - 1) * moviesPerPage, page * moviesPerPage).map((movie) => (
                     <Grid2 item xs={12} sm={6} md={4} key={movie.id}>
                         <MovieCard movie={movie} onRemove={() => handleOpenDialog(movie.id)} />
