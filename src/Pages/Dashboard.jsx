@@ -8,6 +8,7 @@ import useMovieActions from "../Utils/useMovieActions";
 import BackButton from "../Components/BackButton";
 import Fuse from "fuse.js";
 import { getMovies, deleteMovie } from "../Utils/api"
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function Dashboard() {
     const [movies, setMovies] = useState([])
@@ -101,6 +102,7 @@ export default function Dashboard() {
                     }}
                     slotProps={{
                         input: {
+                            startAdornment: <SearchIcon sx={{color: "primary.main", mr: 1}}/>,
                             style: { color: "black" }, // Cambia el color del texto a negro
                         },
                     }}

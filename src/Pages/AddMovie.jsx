@@ -73,7 +73,7 @@ export default function AddMovie() {
         <Container sx={{ mt: "70px", color: "white", mt: 11, mb: 8 }}>
             {error && <Typography color="error">{error}</Typography>}
             <form onSubmit={handleSubmit}>
-                <TextField label="Título" name="title" value={title} onChange={handleInput} fullWidthmargin="normal" required sx={{
+                <TextField label="Título" name="title" value={title} onChange={handleInput} fullWidth margin="normal" required sx={{
                     input: { color: "white", bgcolor:"primary.main" }, label: { color: "white" }, "& .MuiInputLabel-root": { color: "white" }
                 }} />
                 <TextField label="Año" name="year" value={year} onChange={handleInput} fullWidth margin="normal" required sx={{

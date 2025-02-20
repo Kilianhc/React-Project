@@ -49,17 +49,17 @@ export default function MovieDetails() {
 
     return (
         <Container>
-            <Grid2 container justifyContent="center" sx={{ mt: 13 }}>
+            <Grid2 container justifyContent="center" sx={{ mt: {sm:13, xs: 9 }, mb:{xs:5, sm: 0}}}>
                 <Grid2 item xs={12} sm={6} md={4}>
                     <Card sx={{
-                        bgcolor: "black", display: "flex", maxWidth: "800px", height: "700px", borderRadius: "15px", border: "5px solid",
+                        bgcolor: "black", display: "flex", flexDirection:{xs:"column", sm:"row"}, maxWidth: "800px", height: {xs:"auto", sm:"700px"}, borderRadius: "15px", border: "5px solid",
                         borderColor: "primary.main"
                     }}>
                         <CardMedia
                             component="img"
                             image={movie.image}
                             alt={movie.title}
-                            sx={{ width: "50%", height: "100%", objectFit: "cover" }}
+                            sx={{ width: {sm:"50%"}, height: "100%", objectFit: "cover" }}
                         />
                         <CardContent sx={{ mt: 5, color: "white", flex: 2, flexDirection: "column", justifyContent: "center", p: 3 }}>
                             <Typography variant="h6" sx={{ fontWeight: "bold", mb: 5 }}>{movie.title} ({movie.year})</Typography>

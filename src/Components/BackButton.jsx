@@ -7,7 +7,7 @@ const BackButton = () => {
 
     return (
         <Button variant="contained" color="primary" startIcon={<ArrowBackIcon />} onClick={() => navigate(-1)} // Regresa a la página anterior
-            sx={{ mt: 2, height: 37 }}>Volver</Button>
+            sx={{ mt: 2, height: 37, display:{xs:"none",sm:"flex" } }}>Volver</Button>
     );
 };
 
