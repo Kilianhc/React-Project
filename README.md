@@ -47,9 +47,13 @@ npm install
 -Iniciar la Aplicación React
 -npm start
 
+---
+
 ## 🔑 Acceso a la Vista de Administrador
 
 Para acceder a la vista de administrador, se debe ingresar una contraseña que se solicita en la interfaz de la aplicación.
+
+---
 
 ## 📌 Contribución
 
@@ -60,12 +64,18 @@ Para acceder a la vista de administrador, se debe ingresar una contraseña que s
 - Realiza los cambios: git push origin nueva-funcionalidad.
 - Abre un Pull Request.
 
+---
+
 ## 📄 Licencia
 
 Este proyecto está bajo la licencia MIT. ¡ Siéntete libre de usarlo y mejorarlo !
 
-## Enlace a la app:
+---
 
-[https://prismatic-seahorse-b6fcae.netlify.app/]
+## 🌐 Enlace a la app:
+
+[KiMovie en Netlify](https://prismatic-seahorse-b6fcae.netlify.app/)
+
+---
 
 ### ✨ Desarrollado con pasión por Kilian Hernández
