@@ -74,7 +74,7 @@ Este proyecto está bajo la licencia MIT. ¡ Siéntete libre de usarlo y mejorar
 
 ## 🌐 Enlace a la app:
 
-[KiMovie en Netlify](https://prismatic-seahorse-b6fcae.netlify.app/)
+[KiMovie en Netlify](https://ki-movie.netlify.app/)
 
 ---
 
